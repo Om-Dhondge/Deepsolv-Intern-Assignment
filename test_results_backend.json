@@ -1,0 +1,50 @@
+{
+  "timestamp": "2025-12-14T11:35:05.250062",
+  "total_tests": 7,
+  "passed_tests": 6,
+  "success_rate": 85.71428571428571,
+  "results": [
+    {
+      "test_name": "Health Check Endpoint",
+      "success": true,
+      "details": "Status: 200, Response: {'message': 'LinkedIn Insights Microservice API', 'version': '1.0.0'}",
+      "timestamp": "2025-12-14T11:35:04.701376"
+    },
+    {
+      "test_name": "Scrape Page (microsoft)",
+      "success": false,
+      "details": "Status: 500, Response: {\"detail\":\"Error scraping page: BrowserType.launch: Executable doesn't exist at /root/.cache/ms-playwright/chromium_headless_shell-1200/chrome-linux/headless_shell\\n\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "timestamp": "2025-12-14T11:35:04.979504"
+    },
+    {
+      "test_name": "List Pages",
+      "success": true,
+      "details": "Status: 200, Total pages: 0, Current page: 1",
+      "timestamp": "2025-12-14T11:35:05.054152"
+    },
+    {
+      "test_name": "List Pages with Filters",
+      "success": true,
+      "details": "Status: 200, Filtered results: 0",
+      "timestamp": "2025-12-14T11:35:05.095271"
+    },
+    {
+      "test_name": "Get Page Posts (microsoft)",
+      "success": true,
+      "details": "Status: 404, Page not found (expected if not scraped yet)",
+      "timestamp": "2025-12-14T11:35:05.170687"
+    },
+    {
+      "test_name": "Get Page Employees (microsoft)",
+      "success": true,
+      "details": "Status: 404, Page not found (expected if not scraped yet)",
+      "timestamp": "2025-12-14T11:35:05.204414"
+    },
+    {
+      "test_name": "Get Page Followers (microsoft)",
+      "success": true,
+      "details": "Status: 404, Page not found (expected if not scraped yet)",
+      "timestamp": "2025-12-14T11:35:05.249129"
+    }
+  ]
+}

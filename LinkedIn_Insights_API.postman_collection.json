@@ -1,0 +1,260 @@
+{
+  "info": {
+    "name": "LinkedIn Insights Microservice API",
+    "description": "API collection for LinkedIn Insights Microservice - scrape and analyze LinkedIn company pages",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8001/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        },
+        "description": "Check if API is running"
+      }
+    },
+    {
+      "name": "Get Page by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages/:page_id",
+          "host": ["{{base_url}}"],
+          "path": ["pages", ":page_id"],
+          "variable": [
+            {
+              "key": "page_id",
+              "value": "deepsolv",
+              "description": "LinkedIn page ID (e.g., deepsolv, microsoft, google)"
+            }
+          ]
+        },
+        "description": "Get LinkedIn page details by page_id. If not in database, scrapes in real-time."
+      }
+    },
+    {
+      "name": "List All Pages",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages?page=1&page_size=10",
+          "host": ["{{base_url}}"],
+          "path": ["pages"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1",
+              "description": "Page number"
+            },
+            {
+              "key": "page_size",
+              "value": "10",
+              "description": "Items per page (1-100)"
+            },
+            {
+              "key": "name",
+              "value": "",
+              "description": "Search by page name",
+              "disabled": true
+            },
+            {
+              "key": "industry",
+              "value": "",
+              "description": "Filter by industry",
+              "disabled": true
+            },
+            {
+              "key": "follower_count_min",
+              "value": "",
+              "description": "Minimum follower count",
+              "disabled": true
+            },
+            {
+              "key": "follower_count_max",
+              "value": "",
+              "description": "Maximum follower count",
+              "disabled": true
+            }
+          ]
+        },
+        "description": "List all LinkedIn pages with optional filters and pagination"
+      }
+    },
+    {
+      "name": "Filter Pages by Follower Count",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages?page=1&page_size=10&follower_count_min=20000&follower_count_max=40000",
+          "host": ["{{base_url}}"],
+          "path": ["pages"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "page_size",
+              "value": "10"
+            },
+            {
+              "key": "follower_count_min",
+              "value": "20000"
+            },
+            {
+              "key": "follower_count_max",
+              "value": "40000"
+            }
+          ]
+        },
+        "description": "Example: Find pages with 20k-40k followers"
+      }
+    },
+    {
+      "name": "Search Pages by Name",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages?page=1&page_size=10&name=tech",
+          "host": ["{{base_url}}"],
+          "path": ["pages"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "page_size",
+              "value": "10"
+            },
+            {
+              "key": "name",
+              "value": "tech"
+            }
+          ]
+        },
+        "description": "Search pages by name (case-insensitive)"
+      }
+    },
+    {
+      "name": "Filter Pages by Industry",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages?page=1&page_size=10&industry=software",
+          "host": ["{{base_url}}"],
+          "path": ["pages"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "page_size",
+              "value": "10"
+            },
+            {
+              "key": "industry",
+              "value": "software"
+            }
+          ]
+        },
+        "description": "Filter pages by industry"
+      }
+    },
+    {
+      "name": "Get Page Posts",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages/:page_id/posts?page=1&page_size=15",
+          "host": ["{{base_url}}"],
+          "path": ["pages", ":page_id", "posts"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "page_size",
+              "value": "15"
+            }
+          ],
+          "variable": [
+            {
+              "key": "page_id",
+              "value": "deepsolv"
+            }
+          ]
+        },
+        "description": "Get recent 10-15 posts of a LinkedIn page with pagination"
+      }
+    },
+    {
+      "name": "Get Page Employees",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages/:page_id/employees?page=1&page_size=20",
+          "host": ["{{base_url}}"],
+          "path": ["pages", ":page_id", "employees"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "page_size",
+              "value": "20"
+            }
+          ],
+          "variable": [
+            {
+              "key": "page_id",
+              "value": "deepsolv"
+            }
+          ]
+        },
+        "description": "Get list of people working at a LinkedIn page with pagination"
+      }
+    },
+    {
+      "name": "Get Page Followers Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/pages/:page_id/followers",
+          "host": ["{{base_url}}"],
+          "path": ["pages", ":page_id", "followers"],
+          "variable": [
+            {
+              "key": "page_id",
+              "value": "deepsolv"
+            }
+          ]
+        },
+        "description": "Get followers information for a page (returns follower count)"
+      }
+    }
+  ]
+}
